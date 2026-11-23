@@ -1,0 +1,64 @@
+{
+    "name": "agentic-ai",
+    "image": "ghcr.io/astral-sh/uv:python3.12-bookworm-slim",
+    "postCreateCommand": "uv sync --no-install-project",
+    "containerEnv": {
+        "UV_LINK_MODE": "symlink"
+    },
+    "secrets": {
+        "AZURE_AI_API_BASE": {
+            "description": "Azure OpenAI workspace URL. Looks something like: https://<NAME_OF_YOUR_WORKSPACE>.openai.azure.com/"
+        },
+        "AZURE_AI_API_KEY": {
+            "description": "Azure OpenAI workspace API key."
+        },
+        "GEMINI_API_KEY": {
+            "description": "Google Gemini API key."
+        }
+    },
+    "customizations": {
+        "codespaces": {
+            "openFiles": [
+                "README.md"
+            ],
+            "workbench.editorAssociations": {
+                "*.md": "vscode.markdown.preview.editor"
+            }
+        },
+        "vscode": {
+            "openFiles": [
+                "README.md"
+            ],
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "workbench.startupEditor": "readme",
+                "workbench.editorAssociations": {
+                    "*.md": "vscode.markdown.preview.editor"
+                },
+                "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+                "workbench.colorCustomizations": {
+                    "commandCenter.background": "#6c1d5f"
+                },
+                "files.exclude": {
+                    ".mypy_cache/": true,
+                    ".ruff_cache/": true,
+                    ".venv": true,
+                    "**/__pycache__": true,
+                    "**/.pytest_cache/": true,
+                    "**/*.egg-info": true,
+                    ".pre-commit-config.yaml": true,
+                    ".devcontainer/": true,
+                    ".github/": true,
+                    ".gitignore": true,
+                    ".python-version": true,
+                    "pyproject.toml": true,
+                    "uv.lock": true,
+                    "docs/": true
+                }
+            }
+        }
+    }
+}
